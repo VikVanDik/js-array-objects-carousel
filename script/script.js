@@ -48,7 +48,7 @@ let imgCounter = 0
 
    imgWrapper.innerHTML += `
    <img src="${game.image}" class="hide item">
-        <div class="info">
+        <div class="info hide">
           <h3>${game.title}</h3>
           <div class="info-text">${game.text}</div>
         </div>
@@ -68,38 +68,69 @@ let imgCounter = 0
 
 const hideImg = document.getElementsByClassName('item')
 const activeImg = document.getElementsByClassName ('item-mini')
-
+const activeInfo = document.getElementsByClassName('info')
 console.log(hideImg);
 
 hideImg[imgCounter].classList.remove('hide')
 activeImg[imgCounter].classList.add('active')
+activeInfo[imgCounter].classList.remove('hide')
 
 
 // 5a. Creare i bottoni così da poter triggerare l'azione del counter.
-buttonDown.addEventListener('click', function(){
+buttonDown.addEventListener('click', btnDown)
+
+buttonUp.addEventListener('click', btnUp)
+
+let intervalDown;
+function autoplayDown (){
+  intervalDown = setInterval (btnDown, 1000)
+}
+
+let intervalUp;
+function autoplayUp (){
+  intervalUp = setInterval (btnUp, 1000)
+} 
+
+const buttonReverse = document.querySelector('.button-reverse')
+
+autoplayDown()
+let autoPlayFlag = true
+
+buttonReverse.addEventListener('click', function(){
+  if (autoPlayFlag === true) {
+    clearInterval(intervalDown)
+    autoplayUp()
+    autoPlayFlag = false
+  } else {
+    clearInterval(intervalUp)
+    autoplayDown()
+    autoPlayFlag = true
+  }
+})
+
+
+function btnDown(){
   activeImg[imgCounter].classList.remove('active')
   hideImg[imgCounter].classList.add('hide')
+  activeInfo[imgCounter].classList.add('hide')
   imgCounter++
   if (imgCounter === img.length) {
     imgCounter = 0
   }
   activeImg[imgCounter].classList.add('active')
   hideImg[imgCounter].classList.remove('hide')
-  
-})
+  activeInfo[imgCounter].classList.remove('hide')
+}
 
-buttonUp.addEventListener('click', function(){
+function btnUp(){
   activeImg[imgCounter].classList.remove('active')
   hideImg[imgCounter].classList.add('hide')
+  activeInfo[imgCounter].classList.add('hide')
   if (imgCounter === 0) {
     imgCounter = img.length
   }
   imgCounter--
   hideImg[imgCounter].classList.remove('hide')
   activeImg[imgCounter].classList.add('active')
-})
-
-
-
-
-
+  activeInfo[imgCounter].classList.remove('hide')
+}

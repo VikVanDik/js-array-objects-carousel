@@ -12,6 +12,7 @@
   background-color: grey;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -37,6 +38,10 @@
   bottom: 5px;
   right: 6%;
   z-index: 999;
+}
+
+.button-reverse {
+  display: block;
 }
 
 .images {
