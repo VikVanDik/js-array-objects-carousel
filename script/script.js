@@ -65,11 +65,11 @@ let imgCounter = 0
 //   console.log(imgWrapper)
 // }
 
-
 const hideImg = document.getElementsByClassName('item')
 const activeImg = document.getElementsByClassName ('item-mini')
 const activeInfo = document.getElementsByClassName('info')
 console.log(hideImg);
+
 
 hideImg[imgCounter].classList.remove('hide')
 activeImg[imgCounter].classList.add('active')
@@ -83,12 +83,12 @@ buttonUp.addEventListener('click', btnUp)
 
 let intervalDown;
 function autoplayDown (){
-  intervalDown = setInterval (btnDown, 1000)
+  intervalDown = setInterval (btnDown, 3000)
 }
 
 let intervalUp;
 function autoplayUp (){
-  intervalUp = setInterval (btnUp, 1000)
+  intervalUp = setInterval (btnUp, 3000)
 } 
 
 const buttonReverse = document.querySelector('.button-reverse')
