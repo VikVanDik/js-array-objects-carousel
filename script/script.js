@@ -5,7 +5,7 @@
 const img = [
   {
       image: 'img/01.webp',
-      title: 'Marvel\'s Spiderman Miles Morale',
+      title: 'Marvel\'s Spiderman Miles Morales',
       text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
   }, {
       image: 'img/02.webp',
@@ -38,17 +38,37 @@ let imgCounter = 0
 
 
 // 3a. Collegare l'array ad un ciclo così da ottenere l'elemento che cicla.
-for(let i = 0; i<img.length; i++){
-  const image = img[i]
-  console.log(image);
-  imgWrapper.innerHTML += `<img src=${image} class="hide item">`
-  thumbWrapper.innerHTML += `<img src="${image}" alt="" class="item-mini">`
-  console.log(imgWrapper)
-}
+
+// 3. Modificare i cicli e renderli compatibili con l'array di oggetti.
+
+ for (let game of img) {
+   console.log(game.image);
+   console.log(game.title);
+   console.log(game.text);
+
+   imgWrapper.innerHTML += `
+   <img src="${game.image}" class="hide item">
+        <div class="info">
+          <h3>${game.title}</h3>
+          <div class="info-text">${game.text}</div>
+        </div>
+   `
+   thumbWrapper.innerHTML += `<img src="${game.image}" alt="" class="item-mini">`
+ }
+
+
+// for(let i = 0; i<img.length; i++){
+//   const image = img[i]
+//   console.log(image);
+//   imgWrapper.innerHTML += `<img src=${image} class="hide item">`
+//   thumbWrapper.innerHTML += `<img src="${image}" alt="" class="item-mini">`
+//   console.log(imgWrapper)
+// }
 
 
 const hideImg = document.getElementsByClassName('item')
 const activeImg = document.getElementsByClassName ('item-mini')
+
 console.log(hideImg);
 
 hideImg[imgCounter].classList.remove('hide')
